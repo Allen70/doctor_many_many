@@ -1,10 +1,11 @@
 class Patient
-    attr_reader :name
+    attr_reader :name, :age
 
     @@all =[]
 
-    def initialize(name)
+    def initialize(name, age)
         @name = name
+        @age = age
         @@all << self
     end
 
@@ -12,16 +13,4 @@ class Patient
         @@all
     end
 
-    def appointments
-        Appointment.all.select do |apt|
-            apt.patient == self
-        end
-    end
-    
-    def doctors
-        docs = appointments.map do |apt|
-            apt.doctor.name
-        end
-        docs.uniq
-    end
 end
